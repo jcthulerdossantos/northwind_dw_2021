@@ -4,11 +4,49 @@ sources:
     - name: northwind_etl_v2
       tables:
         - name: orders
+          description: Tabela de informações dos pedidos
+          columns:
+            - name: order_id
+              description: id do pedido
+              tests:
+                - unique
+                - not_null
         - name: customers
-          description: Essa é a tabela de clientes
+          description: Tabela de informações dos clientes
           columns:
             - name: customer_id
               description: id do cliente
               tests:
                 - unique
+                - not_null
+        - name: products
+          description: Tabela de informações dos produtos
+          columns:
+            - name: product_id
+              description: id do produto
+              tests:
+                - unique
+                - not_null
+        - name: shippers
+          description: Tabela de informações dos transportadores
+          columns:
+            - name: shipper_id
+              description: id do transportador
+              tests:
+                - unique
+                - not_null
+        - name: suppliers
+          description: Tabela de informações dos fornecedores
+          columns:
+            - name: supplier_id
+              description: id do fornecedor
+              tests:
+                - unique
+                - not_null
+        - name: order_details
+          description: Tabela que descreve itens no pedido - para respeitar star schema, é trazida como DIM
+          columns:
+            - name: order_id
+              description: id do produto
+              tests:
                 - not_null
