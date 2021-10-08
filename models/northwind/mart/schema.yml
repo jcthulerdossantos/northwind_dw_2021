@@ -3,19 +3,65 @@ version: 2
 
 models:
     - name: fact_orders
-      description: "Tabela FATO de pedidos - vendas"
+      description: "Tabela FATO de pedidos para histórico de vendas"
       columns:
           - name: order_id
             description: "A chave primária original da tabela"
             tests:
               - unique
               - not_null
-
+    - name: fact_order_details
+      description: "Tabela FATO de detalhes dos pedidos para performance de vendas"
+      columns:
+          - name: order_id
+            description: "A chave primária original da tabela - NÃO É ÚNICA"
+            tests:
+              - not_null
     - name: dim_customers
       description: "Tabela DIMENSÃO de clientes"
       columns:
           - name: customer_id
-            description: "The primary key for this table"
+            description: "A chave primária original da tabela"
+            tests:
+              - unique
+              - not_null
+    - name: dim_employees
+      description: "Tabela DIMENSÃO de empregados"
+      columns:
+          - name: employee_id
+            description: "A chave primária original da tabela"
+            tests:
+              - unique
+              - not_null
+    - name: dim_products
+      description: "Tabela DIMENSÃO de produtos"
+      columns:
+          - name: product_id
+            description: "A chave primária original da tabela"
+            tests:
+              - unique
+              - not_null
+    - name: dim_shippers
+      description: "Tabela DIMENSÃO de transportadores"
+      columns:
+          - name: shipper_id
+            description: "A chave primária original da tabela"
+            tests:
+              - unique
+              - not_null
+    - name: dim_suppliers
+      description: "Tabela DIMENSÃO de fornecedores"
+      columns:
+          - name: supplier_id
+            description: "A chave primária original da tabela"
+            tests:
+              - unique
+              - not_null
+    - name: dim_categories
+      description: "Tabela DIMENSÃO de categorias"
+      columns:
+          - name: category_id
+            description: "A chave primária original da tabela"
             tests:
               - unique
               - not_null

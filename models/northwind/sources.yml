@@ -4,12 +4,19 @@ sources:
     - name: northwind_etl_v2
       tables:
         - name: orders
-          description: Tabela de informações dos pedidos
+          description: Tabela de informações dos pedidos - histórico de vendas (FACT)
           columns:
             - name: order_id
               description: id do pedido
               tests:
                 - unique
+                - not_null
+        - name: order_details
+          description: Tabela que descreve itens no pedido - performance de vendas (FACT SEM CHAVE PRIMÁRIA ÚNICA)
+          columns:
+            - name: order_id
+              description: id do produto
+              tests:
                 - not_null
         - name: customers
           description: Tabela de informações dos clientes
@@ -43,10 +50,19 @@ sources:
               tests:
                 - unique
                 - not_null
-        - name: order_details
-          description: Tabela que descreve itens no pedido - para respeitar star schema, é trazida como DIM
+        - name: employees
+          description: Tabela de informações dos empregados
           columns:
-            - name: order_id
-              description: id do produto
+            - name: employee_id
+              description: id do empregado
               tests:
+                - unique
+                - not_null
+        - name: categories
+          description: Tabela de informações das categorias
+          columns:
+            - name: category_id
+              description: id da categoria
+              tests:
+                - unique
                 - not_null
